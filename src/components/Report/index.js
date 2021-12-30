@@ -120,7 +120,7 @@ const Report = () => {
 
   return (
     <div className="container">
-      {dailyData && weeweeklyData && (
+      {dailyData && weeklyData && (
         <>
           <div className="pie-chart-container">
             <Pie options={dailyOptions} data={dailyData} />
