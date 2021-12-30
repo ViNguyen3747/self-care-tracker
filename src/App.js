@@ -4,12 +4,14 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  createHttpLink,
+  HttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import Window from "./window";
 import "./components/common/Styles/commonStyles.scss";
-const link = createHttpLink({ uri: "/graphql" });
+const link = new HttpLink({
+  uri: "https://self-care-tracker.herokuapp.com/graphql",
+});
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem("id_token");
