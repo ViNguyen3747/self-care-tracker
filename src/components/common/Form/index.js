@@ -12,6 +12,8 @@ import {
   Header,
   Modal,
 } from "semantic-ui-react";
+import { NavLink } from "react-router-dom";
+
 import SemanticDatepicker from "react-semantic-ui-datepickers";
 import { categoriesOptions, priorityOptions } from "../Data";
 import { ADD_TASK, UPDATE_TASK } from "../../../utils/graphQL/mutation";
