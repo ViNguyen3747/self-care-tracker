@@ -68,7 +68,7 @@ const TaskForm = ({ currentId, setCurrentId, rerouting }) => {
         setValue(key, key === "date" ? new Date(value) : value)
       );
     }
-  }, [task]);
+  }, [data]);
 
   const handleFormSubmit = async () => {
     setValue(
