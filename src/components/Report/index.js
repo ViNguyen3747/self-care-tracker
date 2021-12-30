@@ -120,17 +120,23 @@ const Report = () => {
 
   return (
     <div className="container">
-      <div className="pie-chart-container">
-        <Pie options={dailyOptions} data={dailyData} />
-      </div>
-      {dailyEmpty && (
-        <div className="pieText">You haven't added any task for today yet</div>
+      {dailyData && weeweeklyData && (
+        <>
+          <div className="pie-chart-container">
+            <Pie options={dailyOptions} data={dailyData} />
+          </div>
+          {dailyEmpty && (
+            <div className="pieText">
+              You haven't added any task for today yet
+            </div>
+          )}
+          <div className="barchart-wrapper">
+            <div className="bar-chart-container">
+              <Bar options={weeklyOptions} data={weeklyData} />
+            </div>
+          </div>
+        </>
       )}
-      <div className="barchart-wrapper">
-        <div className="bar-chart-container">
-          <Bar options={weeklyOptions} data={weeklyData} />
-        </div>
-      </div>
     </div>
   );
 };
