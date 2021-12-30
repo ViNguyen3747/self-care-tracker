@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { NavLink } from "react-router-dom";
 import { DELETE_TASK } from "../../../utils/graphQL/mutation";
@@ -7,8 +6,7 @@ import { Icon, Button, Header, Modal } from "semantic-ui-react";
 import { priorityOptions } from "../Data";
 import "./TaskDetail.scss";
 
-const TaskDetail = ({ task, setCurrentId, mock }) => {
-  const history = useHistory();
+const TaskDetail = ({ task, setCurrentId, mock, rerouting }) => {
   const [deleteTask] = useMutation(DELETE_TASK);
   const [open, setOpen] = useState(false);
   const [mockModal, setMock] = useState(false);
@@ -27,7 +25,7 @@ const TaskDetail = ({ task, setCurrentId, mock }) => {
           deleteTaskId: task.id,
         },
       });
-      history.push("/today");
+      window.location.assign(`/${rerouting}`);
     }
   };
 

@@ -94,7 +94,13 @@ export default function Calendar({
 
   const getTask = (task, date) => {
     if (formatDate(task.date) === date) {
-      return <TaskDetail task={task} setCurrentId={setCurrentId} />;
+      return (
+        <TaskDetail
+          task={task}
+          setCurrentId={setCurrentId}
+          rerouting="upcoming"
+        />
+      );
     }
   };
 

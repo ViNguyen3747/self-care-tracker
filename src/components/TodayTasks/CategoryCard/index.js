@@ -13,6 +13,7 @@ const MockData = ({ tasks, setCurrentId }) => {
       setCurrentId={setCurrentId}
       mock="true"
       today="true"
+      rerouting="today"
     />
   ));
 };

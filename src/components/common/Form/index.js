@@ -3,7 +3,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { animateScroll as scroll } from "react-scroll";
 import { Controller, useForm } from "react-hook-form";
 import { useMutation, useQuery } from "@apollo/client";
-import { useHistory } from "react-router-dom";
 import { Form, Button, Grid, Dropdown } from "semantic-ui-react";
 import SemanticDatepicker from "react-semantic-ui-datepickers";
 import { categoriesOptions, priorityOptions } from "../Data";
@@ -41,7 +40,6 @@ const TaskForm = ({ currentId, setCurrentId, rerouting }) => {
     defaultValues: initialState,
   });
   const { data } = useQuery(GET_TASK, { variables: { taskId: currentId } });
-  const history = useHistory();
   const [addTask] = useMutation(ADD_TASK);
   const [updateTask] = useMutation(UPDATE_TASK);
 
@@ -86,7 +84,7 @@ const TaskForm = ({ currentId, setCurrentId, rerouting }) => {
           },
         });
       }
-      history.push(`/${rerouting}`);
+      window.location.assign(`/${rerouting}`);
     } catch (error) {
       console.log(error);
     }
