@@ -14,14 +14,18 @@ const Activation = () => {
   useEffect(() => {
     if (activation_token)
       try {
-        let { data } = activateUSer({ variables: { token: activation_token } });
-        if (data) {
-          setSuccess(data.activateEmail.message);
-        }
+        activate(activation_token);
       } catch (e) {
         setErr("Fail to activate account");
       }
   }, [activation_token]);
+
+  const activate = async (token) => {
+    let { data } = await activateUSer({ variables: { token } });
+    if (data) {
+      setSuccess(data.activateEmail.message);
+    }
+  };
   return (
     <div className="container">
       <div className="formWrapper">
