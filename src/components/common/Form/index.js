@@ -49,11 +49,9 @@ const TaskForm = ({ currentId, setCurrentId, rerouting }) => {
     resolver: yupResolver(taskSchema),
     defaultValues: initialState,
   });
-  const [client, logout, data] = useAuth();
+  const [client, logout, authUser] = useAuth();
   const [mockModal, setMock] = useState(false);
-  const {
-    data: { task },
-  } = useQuery(GET_TASK, {
+  const { data } = useQuery(GET_TASK, {
     variables: { taskId: currentId },
   });
   const [addTask] = useMutation(ADD_TASK);
@@ -61,10 +59,10 @@ const TaskForm = ({ currentId, setCurrentId, rerouting }) => {
 
   useEffect(() => {
     reset();
-    if (task) {
+    if (data) {
       clearErrors();
       scroll.scrollToTop();
-      let { createdAt, id, owner, __typename, ...taskInfo } = task;
+      let { createdAt, id, owner, __typename, ...taskInfo } = data.task;
 
       Object.entries(taskInfo).map(([key, value]) =>
         setValue(key, key === "date" ? new Date(value) : value)
@@ -81,7 +79,7 @@ const TaskForm = ({ currentId, setCurrentId, rerouting }) => {
     );
     let taskData = getValues();
     try {
-      if (data.authUser) {
+      if (authUser.authUser) {
         if (currentId) {
           const { data } = await updateTask({
             variables: {
