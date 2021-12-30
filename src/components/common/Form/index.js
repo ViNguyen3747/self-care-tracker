@@ -1,15 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { animateScroll as scroll } from "react-scroll";
 import { Controller, useForm } from "react-hook-form";
 import { useMutation, useQuery } from "@apollo/client";
-import { Form, Button, Grid, Dropdown } from "semantic-ui-react";
+import {
+  Form,
+  Button,
+  Grid,
+  Dropdown,
+  Icon,
+  Header,
+  Modal,
+} from "semantic-ui-react";
 import SemanticDatepicker from "react-semantic-ui-datepickers";
 import { categoriesOptions, priorityOptions } from "../Data";
 import { ADD_TASK, UPDATE_TASK } from "../../../utils/graphQL/mutation";
 import { GET_TASK } from "../../../utils/graphQL/query";
 import { taskSchema } from "../../../utils/validation/taskFormValidation";
-
+import useAuth from "../../../utils/Hooks/useAuth";
 const renderLabel = (option) => ({
   color: option.color,
   content: option.text,
@@ -39,22 +47,26 @@ const TaskForm = ({ currentId, setCurrentId, rerouting }) => {
     resolver: yupResolver(taskSchema),
     defaultValues: initialState,
   });
-  const { data } = useQuery(GET_TASK, { variables: { taskId: currentId } });
+  const [client, logout, data] = useAuth();
+  const [mockModal, setMock] = useState(false);
+  const { data: task } = useQuery(GET_TASK, {
+    variables: { taskId: currentId },
+  });
   const [addTask] = useMutation(ADD_TASK);
   const [updateTask] = useMutation(UPDATE_TASK);
 
   useEffect(() => {
     reset();
-    if (data) {
+    if (task) {
       clearErrors();
       scroll.scrollToTop();
-      let { createdAt, id, owner, __typename, ...task } = data.task;
+      let { createdAt, id, owner, __typename, ...task } = task.task;
 
       Object.entries(task).map(([key, value]) =>
         setValue(key, key === "date" ? new Date(value) : value)
       );
     }
-  }, [data]);
+  }, [task]);
 
   const handleFormSubmit = async () => {
     setValue(
@@ -65,26 +77,30 @@ const TaskForm = ({ currentId, setCurrentId, rerouting }) => {
     );
     let taskData = getValues();
     try {
-      if (currentId) {
-        const { data } = await updateTask({
-          variables: {
-            updateTaskId: currentId,
-            input: {
-              ...taskData,
+      if (data.authUser) {
+        if (currentId) {
+          const { data } = await updateTask({
+            variables: {
+              updateTaskId: currentId,
+              input: {
+                ...taskData,
+              },
             },
-          },
-        });
-        clear();
+          });
+          clear();
+        } else {
+          const { data } = await addTask({
+            variables: {
+              input: {
+                ...taskData,
+              },
+            },
+          });
+        }
+        window.location.assign(`/${rerouting}`);
       } else {
-        const { data } = await addTask({
-          variables: {
-            input: {
-              ...taskData,
-            },
-          },
-        });
+        setMock(true);
       }
-      window.location.assign(`/${rerouting}`);
     } catch (error) {
       console.log(error);
     }
@@ -203,6 +219,38 @@ const TaskForm = ({ currentId, setCurrentId, rerouting }) => {
           )}
         </Grid>
       </Form>
+      <Modal
+        basic
+        onClose={() => setMock(false)}
+        onOpen={() => setMock(true)}
+        open={mockModal}
+        size="small"
+      >
+        <Header icon>
+          <Icon name="user circle" />
+          You're not signed in :(
+        </Header>
+        <Modal.Content>
+          <p>Sign in to create your own task list and make changes on it</p>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button basic color="red" inverted onClick={() => setMock(false)}>
+            <Icon name="remove" /> No
+          </Button>
+          <NavLink to="/signin">
+            <Button
+              color="purple"
+              className="linkModal"
+              inverted
+              onClick={() => setMock(false)}
+            >
+              {" "}
+              <Icon name="checkmark" onClick={() => setMock(false)} />
+              Yes
+            </Button>
+          </NavLink>
+        </Modal.Actions>
+      </Modal>
     </div>
   );
 };
