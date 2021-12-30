@@ -51,7 +51,9 @@ const TaskForm = ({ currentId, setCurrentId, rerouting }) => {
   });
   const [client, logout, data] = useAuth();
   const [mockModal, setMock] = useState(false);
-  const { data: task } = useQuery(GET_TASK, {
+  const {
+    data: { task },
+  } = useQuery(GET_TASK, {
     variables: { taskId: currentId },
   });
   const [addTask] = useMutation(ADD_TASK);
@@ -62,9 +64,9 @@ const TaskForm = ({ currentId, setCurrentId, rerouting }) => {
     if (task) {
       clearErrors();
       scroll.scrollToTop();
-      let { createdAt, id, owner, __typename, ...task } = task.task;
+      let { createdAt, id, owner, __typename, ...taskInfo } = task;
 
-      Object.entries(task).map(([key, value]) =>
+      Object.entries(taskInfo).map(([key, value]) =>
         setValue(key, key === "date" ? new Date(value) : value)
       );
     }
