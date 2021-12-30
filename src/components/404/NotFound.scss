@@ -1,0 +1,67 @@
+@import "../common/Styles/global.scss";
+.imageWrapper {
+  width: 90%;
+  margin: 40px auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  animation: flicker 4s linear infinite both;
+
+  .textWrapper {
+    color: $text-color-3;
+    width: 60%;
+    margin: 50px auto;
+    text-align: center;
+    font-size: 5vw;
+    font-weight: 100px;
+    letter-spacing: 20px;
+    line-height: 7vw;
+    @media screen and (max-width: $BP_SMALL) {
+      width: 100%;
+    }
+  }
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  41.99% {
+    opacity: 1;
+  }
+  42% {
+    opacity: 0;
+  }
+  43% {
+    opacity: 0;
+  }
+  43.01% {
+    opacity: 1;
+  }
+  45.99% {
+    opacity: 1;
+  }
+  46% {
+    opacity: 0;
+  }
+  46.9% {
+    opacity: 0;
+  }
+  46.91% {
+    opacity: 1;
+  }
+  51.99% {
+    opacity: 1;
+  }
+  52% {
+    opacity: 0;
+  }
+  52.8% {
+    opacity: 0;
+  }
+  52.81% {
+    opacity: 1;
+  }
+}

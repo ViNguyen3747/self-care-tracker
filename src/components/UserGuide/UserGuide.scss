@@ -1,0 +1,120 @@
+@import "../common//Styles/global.scss";
+.info-container {
+  width: 100%;
+  text-align: center;
+  padding: 40px 10px;
+  min-height: 40vh;
+  margin: 0 auto;
+}
+
+.Card {
+  width: 30vw;
+  min-height: 100px;
+  display: flex;
+  margin: 10px;
+  padding: 20px;
+  align-items: center;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  justify-content: center;
+  color: $text-color-1;
+  line-height: 25px;
+  background-color: $color-palette-10;
+  font-weight: 600;
+  &:nth-child(odd) {
+    background-color: $color-palette-6;
+    color: $text-color-3;
+  }
+  @media screen and (max-width: $BP_SMALL) {
+    font-size: 1rem;
+  }
+}
+
+.info-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.guide_wrapper {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+.guideCard {
+  display: grid;
+  width: 60vw;
+  min-height: 200px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  grid-auto-columns: minmax(auto, 1fr);
+  align-items: center;
+  grid-template-areas: "col1 col2 col3";
+  font-size: 1.2rem;
+  line-height: 2.2rem;
+  padding: 20px 10px 10px 10px;
+  background-color: $color-palette-8;
+  color: $text-color-3;
+  @media screen and (max-width: $BP_XLARGE) {
+    grid-template-areas: "col1" "col2" "col3";
+    width: 80vw;
+  }
+  @media screen and (max-width: $BP_SMALL) {
+    font-size: 1rem;
+    line-height: 2rem;
+  }
+  &:nth-child(odd) {
+    color: $text-color-1;
+    background-color: $color-palette-10;
+  }
+  border-radius: 20px;
+  margin: 20px;
+}
+
+.InfoRow {
+  display: grid;
+  grid-auto-columns: minmax(auto, 1fr);
+  align-items: center;
+  grid-template-areas: "col2 col1";
+  color: $text-color-3;
+  font-size: 1.5rem;
+  line-height: 3rem;
+  @media screen and (max-width: $BP_LARGE) {
+    grid-template-areas: "col1" "col2";
+  }
+  @media screen and (max-width: $BP_SMALL) {
+    font-size: 1rem;
+    line-height: 2rem;
+  }
+}
+
+.Column1 {
+  margin: 0 auto;
+  grid-area: col1;
+}
+
+.Column3 {
+  margin: 0 auto;
+  grid-area: col3;
+}
+
+.TextWrapper {
+  padding-top: 0;
+  padding-bottom: 60px;
+}
+
+.title {
+  font-size: 1.7rem;
+  @media screen and (max-width: $BP_SMALL) {
+    font-size: 1.5rem;
+  }
+}
+.Subtitle {
+  margin: 15px 20px;
+  text-align: left;
+}
+
+.Column2 {
+  margin: 0 auto;
+  grid-area: col2;
+}

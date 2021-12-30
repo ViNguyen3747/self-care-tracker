@@ -1,0 +1,100 @@
+@import "./global.scss";
+
+@mixin containerStyles {
+  padding-top: 100px;
+  min-height: 110vh;
+  margin-top: -80px;
+  background-color: $color-palette-1;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.container {
+  @include containerStyles();
+  background-image: url(../../images/background.png);
+}
+
+.errorContainer {
+  @include containerStyles();
+  background-image: url(../../images/night.png);
+}
+
+.wrapper {
+  width: 90%;
+  height: 100%;
+  margin: 80px auto;
+  justify-content: center;
+  background-color: $color-palette-7;
+  border-radius: 20px;
+  padding: 20px 10px 50px 10px;
+  margin-bottom: 20px;
+}
+
+.formWrapper {
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+  justify-content: center;
+  background-color: $color-palette-10;
+  border-radius: 20px;
+  padding: 20px;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+
+  label {
+    text-align: start;
+    font-size: 1.1rem !important;
+    color: $text-color-1 !important;
+  }
+  input {
+    border: 0 !important;
+    outline: 0 !important;
+    color: $text-color-1 !important;
+    letter-spacing: 3px;
+    padding-left: 0 !important;
+    font-weight: 600 !important;
+    background: transparent !important;
+    color: $text-color-1 !important;
+    font-size: 1rem !important;
+    border-bottom: 3px solid $color-palette-6 !important;
+    border-radius: 0 !important;
+    &::placeholder {
+      color: $text-color-1 !important;
+    }
+  }
+}
+
+.formContainer {
+  width: 70vw;
+  margin: 10px auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+
+  .button {
+    padding: 15px 30px;
+  }
+}
+.image {
+  width: 30px;
+}
+
+.header {
+  font-size: 3rem;
+  margin: 20px auto;
+  line-height: 3.5rem;
+  text-align: center;
+  letter-spacing: 4px;
+  justify-content: center;
+  color: $text-color-1;
+  font-weight: bolder;
+  @media screen and (max-width: $BP_SMALL) {
+    font-size: 2rem;
+  }
+}
+
+.errorText {
+  color: rgb(185, 42, 42);
+  font-weight: 600;
+}

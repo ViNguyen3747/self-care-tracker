@@ -1,0 +1,49 @@
+@import "../common/Styles/global.scss";
+.navContainer {
+  height: 100px;
+  align-items: center;
+  font-size: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: sticky;
+  z-index: 2;
+  margin-top: -30px;
+  .userName {
+    font-weight: bold;
+    font-size: larger;
+    left: 0;
+    color: $text-color-3;
+    display: block;
+    margin: 55px 20px 0 20px;
+    line-height: 40px;
+    border-radius: 15px;
+    padding: 5px 30px;
+    background-color: $color-palette-5;
+    position: absolute;
+  }
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  float: right;
+  padding: 40px 0 20px 0;
+  @media screen and (max-width: $BP_XLARGE) {
+    display: none;
+  }
+}
+
+#mobileicon {
+  display: none;
+  @media screen and (max-width: $BP_XLARGE) {
+    display: block;
+    color: black;
+    position: absolute;
+    right: 0;
+    margin-right: -40px;
+    transform: translate(-100%, 60%);
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+}

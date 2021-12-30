@@ -1,0 +1,31 @@
+@import "../Styles/global.scss";
+.link {
+  a {
+    font-weight: bold;
+    font-size: large;
+    text-decoration: none;
+    padding: 21px;
+    color: $text-color-3;
+    @media screen and (min-width: $BP_XLARGE) {
+      color: $text-color-2;
+      background-color: $color-palette-6;
+    }
+
+    &:hover {
+      color: $text-color-2;
+      transition: 0.2s ease-in-out;
+
+      @media screen and (min-width: $BP_XLARGE) {
+        color: $text-color-3;
+        background-color: transparent;
+      }
+    }
+  }
+
+  .active {
+    color: $text-color-3;
+    @media screen and (min-width: $BP_XLARGE) {
+      background-color: transparent;
+    }
+  }
+}

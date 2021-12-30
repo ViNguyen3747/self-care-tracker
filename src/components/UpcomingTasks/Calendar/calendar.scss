@@ -1,0 +1,97 @@
+@import "../../common//Styles/global.scss";
+@mixin grid() {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(7, 20vw);
+  grid-column-gap: 0.8px;
+  grid-row-gap: 0.8px;
+}
+
+.navigationHeader {
+  display: flex;
+  & > * {
+    margin-right: 8px;
+  }
+}
+
+.controller {
+  margin: 20px auto;
+}
+
+.calendarLabel {
+  font-size: 30px;
+  letter-spacing: 5px;
+  line-height: 1.2;
+  padding-bottom: 10px;
+  color: $text-color-3;
+}
+.calendar {
+  color: $text-color-3;
+  position: relative;
+  margin: 0 auto;
+  padding: 20px;
+  overflow: auto;
+  border-radius: 7px;
+}
+
+.day-of-week-header-cell {
+  padding: 8px 0;
+  text-align: center;
+  font-size: large;
+  letter-spacing: 4px;
+  font-weight: 600;
+
+  text-transform: uppercase;
+}
+
+.days-of-week {
+  @include grid();
+  width: max-content;
+  @media screen and (max-width: $BP_XXLARGE) {
+    grid-template-columns: repeat(7, 50vw);
+  }
+  @media screen and (max-width: $BP_MEDIUM) {
+    grid-template-columns: repeat(7, 80vw);
+  }
+}
+
+.days-grid {
+  @include grid();
+  height: fit-content;
+  width: max-content;
+  position: relative;
+  @media screen and (max-width: $BP_XXLARGE) {
+    grid-template-columns: repeat(7, 50vw);
+    width: 351.2vw;
+  }
+  @media screen and (max-width: $BP_MEDIUM) {
+    grid-template-columns: repeat(7, 80vw);
+    width: 491.7vw;
+  }
+}
+
+.day-grid-item-container {
+  position: relative;
+  background-color: $color-palette-10;
+  display: flex;
+  color: $text-color-1;
+  min-height: 150px;
+  flex-direction: column;
+}
+
+.day-grid-item-container:not(.current-month) .day-grid-item-header {
+  color: #919191;
+}
+
+/* Position the day label within the day cell */
+.day-grid-item-container .day-grid-item-header {
+  padding: 8px;
+  padding-bottom: 0;
+  font-weight: bold;
+}
+
+.day-grid-item-container > .day-content-wrapper {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}

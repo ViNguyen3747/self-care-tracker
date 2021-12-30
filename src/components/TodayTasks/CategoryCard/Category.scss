@@ -1,0 +1,18 @@
+@import "../../common/Styles/global.scss";
+.categoryContainer {
+  min-height: 400px;
+  width: 20vw;
+  min-width: 300px;
+  margin: 20px;
+  border-radius: 10px;
+  letter-spacing: 3px;
+  line-height: 25px;
+  background-color: $color-palette-10;
+  border: 7px solid $color-palette-7;
+  padding: 10px;
+  text-align: center;
+  color: $text-color-1;
+}
+.detail {
+  width: 100%;
+}

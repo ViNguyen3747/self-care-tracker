@@ -1,0 +1,34 @@
+@import "../Styles/global.scss";
+
+.taskDetailContainer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin: 4px;
+  border-radius: 5px;
+  min-height: 15px;
+  text-align: left;
+  letter-spacing: 1px;
+  padding: 5px;
+  color: $text-color-3;
+
+  p {
+    text-align: center;
+    font-size: larger;
+  }
+}
+
+.name {
+  margin-left: 5px;
+}
+.icon {
+  cursor: pointer;
+  &:hover {
+    color: $color-palette-2;
+    transition: all 0.1s ease-in-out;
+  }
+}
+.linkModal a {
+  text-decoration: none;
+  color: $text-color-3;
+}
