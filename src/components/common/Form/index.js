@@ -62,7 +62,7 @@ const TaskForm = ({ currentId, setCurrentId, rerouting }) => {
     if (data) {
       clearErrors();
       scroll.scrollToTop();
-      let { createdAt, id, owner, __typename, ...taskInfo } = data.task;
+      let { createdAt, id, owner, __typename, ...taskInfo } = data.tasks;
 
       Object.entries(taskInfo).map(([key, value]) =>
         setValue(key, key === "date" ? new Date(value) : value)
