@@ -7,6 +7,5 @@ export default function useAuth() {
   const logout = () => {
     Auth.logout().then(() => client.resetStore());
   };
-  const authUser = data;
-  return [client, logout, authUser];
+  return [client, logout, data];
 }

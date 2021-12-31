@@ -19,7 +19,7 @@ import { categoriesOptions, priorityOptions } from "../Data";
 import { ADD_TASK, UPDATE_TASK } from "../../../utils/graphQL/mutation";
 import { GET_TASK } from "../../../utils/graphQL/query";
 import { taskSchema } from "../../../utils/validation/taskFormValidation";
-import useAuth from "../../../utils/Hooks/useAuth";
+import Auth from "../../../utils/auth";
 const renderLabel = (option) => ({
   color: option.color,
   content: option.text,
@@ -49,7 +49,6 @@ const TaskForm = ({ currentId, setCurrentId, rerouting }) => {
     resolver: yupResolver(taskSchema),
     defaultValues: initialState,
   });
-  const [client, logout, authUser] = useAuth();
   const [mockModal, setMock] = useState(false);
   const { data } = useQuery(GET_TASK, {
     variables: { taskId: currentId },
@@ -79,7 +78,7 @@ const TaskForm = ({ currentId, setCurrentId, rerouting }) => {
     );
     let taskData = getValues();
     try {
-      if (authUser.authUser) {
+      if (Auth.loggedIn()) {
         if (currentId) {
           const { data } = await updateTask({
             variables: {

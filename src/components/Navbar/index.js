@@ -5,12 +5,10 @@ import Auth from "../../utils/auth";
 import useAuth from "../../utils/Hooks/useAuth";
 import Link from "../common/Link";
 const Navbar = ({ toggle }) => {
-  const [client, logout, authUser] = useAuth();
+  const [client, logout, data] = useAuth();
   return (
     <div className="navContainer">
-      {authUser && (
-        <div className="userName">Hi {authUser.authUser.username}</div>
-      )}
+      {data && <div className="userName">Hi {data.authUser.username}</div>}
       <div id="mobileicon">
         <Button
           icon="content"
