@@ -60,7 +60,7 @@ const Signin = () => {
               <input
                 type="password"
                 {...register("password")}
-                placeholder="Username..."
+                placeholder="Password..."
               />
               <p className="errorText">{errors.password?.message}</p>
             </Form.Field>
