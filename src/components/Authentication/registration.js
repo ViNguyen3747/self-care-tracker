@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -26,6 +26,19 @@ const Register = () => {
         setError(err);
     },
   });
+  const [cap, setCap] = useState(false);
+  const CapsLock = "CapsLock";
+  const handleKeydown = (event) => {
+    const code = event.code;
+    setCap(() => event.getModifierState?.(CapsLock) || code === CapsLock);
+  };
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeydown);
+    return () => {
+      window.removeEventListener("keydown", handleKeydown);
+    };
+  }, []);
 
   const onSubmit = async (userData) => {
     try {
@@ -45,6 +58,7 @@ const Register = () => {
         <div className="formWrapper">
           <div className="header">Sign Up</div>
           {error && <div className="errorText">{error.message}</div>}
+          {cap && <div className="errorText">Capslock is on!</div>}
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group widths="equal">
               <Form.Field required>
